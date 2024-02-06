@@ -1,0 +1,49 @@
+name: Classroom checks
+
+on: [push]
+
+jobs:
+  checkout:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      # TODO get the original makefile and test files
+
+  run-code:
+    runs-on: self-hosted
+    needs: checkout
+    container:
+      image:
+        ieremies/mc202runner
+      options: --cpus 1 --memory 1000000000 --rm #--storage-opt size=100M
+    steps:
+      - name: Run testar.py -c
+        run: python3 testar.py -c
+      - name: Copy files from docker to host
+        run: |
+          cp -r testes/* $GITHUB_WORKSPACE
+
+  autograding:
+    permissions:
+      checks: write
+      actions: read
+      contents: read
+    runs-on: self-hosted
+    needs: run-code
+    steps:
+      - uses: education/autograding@v1
+
+  valgrind:
+    runs-on: self-hosted
+    needs: run-code
+    container:
+      image:
+        messeb/valgrind # BUG my img does not work?
+      options: --cpus 1 --memory 1000000000 --rm #--storage-opt size=100M
+    steps:
+    - name: Compile the code
+      run: gcc --std=c99 -Wall -Werror -Werror=vla -g james.c -o james # TODO compile using testar.
+    - name: Run test
+      run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./james <./testes/teste1.in
+
+  # TODO cleanup

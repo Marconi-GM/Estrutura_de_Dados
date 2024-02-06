@@ -1,0 +1,22 @@
+name: Grading
+
+on: [push]
+
+jobs:
+  grading:
+    # Fix permission
+    permissions: write-all
+    if: ${{ github.actor != 'github-classroom[bot]' }}
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test cases
+        run: |
+          sudo docker run --workdir /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }} -v "/home/ubuntu/actions-runner/_work":"/__w" aasatorres/gcc-make-valgrind-python-git:1.0.0 python3 testar.py -f
+      - name: Valgrind
+        if: always()
+        run: |
+          sudo docker run --workdir /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }} -v "/home/ubuntu/actions-runner/_work":"/__w" aasatorres/gcc-make-valgrind-python-git:1.0.0 python3 testar.py --valgrind
+      - name: Clean up
+        if: always()
+        run: rm -rf  ${{ github.event.repository.name }}

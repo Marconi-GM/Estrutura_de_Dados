@@ -1,0 +1,74 @@
+{
+  "tests": [
+    {
+      "name": "Teste 1",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste1.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 2",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste2.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 3",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste3.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 4",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste4.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 5",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste5.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 6",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste6.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Teste 7",
+      "setup": "",
+      "run": "/usr/bin/python3 testar.py -d -t teste7.in",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}
